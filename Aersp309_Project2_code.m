@@ -1,10 +1,7 @@
 %% AERSP 309 Project 2
 % Compare the orbit with and without the J2 effect.
-% All functions used by this script are included at the bottom.
-%
 % Use km for distance, km/s for velocity, and seconds for time.
 % Calculations use radians; printed results and plots use degrees.
-% Saving the figures requires MATLAB R2020a or later.
 
 clear; clc; close all;
 
@@ -75,9 +72,7 @@ coeJ2One = coeJ2(1:2001,:);
 %% Optional: Compare the RAAN and perigee precession rates
 % p = a*(1-e^2), so (RE/p)^2 = (RE/a)^2/(1-e^2)^2.
 % 5*cos(i)^2 - 1 = 4 - 5*sin(i)^2.
-%
 % Estimate the average precession rates using the initial orbital elements.
-% These estimates leave out the short-period variations.
 
 p0 = a0*(1-e0^2);
 n0 = sqrt(mu/a0^3);
@@ -187,7 +182,6 @@ axPoint = elementPlot(tPoint,plotPoint, ...
     'Point-mass Earth: orbital elements over one orbit');
 
 % Choose axis limits that keep small numerical errors in perspective.
-% The actual deviations are printed in the Command Window.
 for k = 1:5
     center = plotPoint(1,k);
     halfWidth = max(abs(center)*1e-3,1e-4);
@@ -412,7 +406,6 @@ function ax = elementPlot(t,values,heading)
 end
 
 function saveFigure(fig,folder,name)
-% Save each figure as a PNG using the filename passed to this function.
 
     exportgraphics(fig,fullfile(folder,[name,'.png']), ...
         'Resolution',160);
